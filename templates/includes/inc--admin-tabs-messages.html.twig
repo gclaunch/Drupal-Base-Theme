@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Include theme for Admin Tabs and Admin Messages
+ *
+ */
+#}
+
+{% if logged_in %}
+	{% if page.admin_tabs %}
+		<div id="admin-tabs" class="admin-tabs">
+			<div class="l-container--md">
+				{{ page.admin_tabs }}
+			</div>
+		</div>		
+	{% endif %}
+{% endif %}

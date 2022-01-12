@@ -1,0 +1,200 @@
+basestart_cardbasic:
+  label: Card basic
+  category: Basestart Cards
+  path: layouts
+  template: card-basic
+  default_region: first
+  icon_map:
+    - [first]
+  regions:
+    first:
+      label: Content
+basestart_cardtopimage:
+  label: Card top image
+  category: Basestart Cards
+  path: layouts
+  template: card-top-image
+  default_region: second
+  icon_map:
+    - [top]
+    - [middle]
+  regions:
+    first:
+      label: Image
+    second:
+      label: Content
+basestart_cardimageoverlay:
+  label: Card image overlay
+  category: Basestart Cards
+  path: layouts
+  template: card-image-overlay
+  default_region: second
+  icon_map:
+    - [top]
+    - [middle]
+  regions:
+    first:
+      label: Image
+    second:
+      label: Content
+basestart_cardheaderfooter:
+  label: Card header footer
+  category: Basestart Cards
+  path: layouts
+  template: card-header-footer
+  default_region: second
+  icon_map:
+    - [top]
+    - [middle]
+    - [bottom]
+  regions:
+    first:
+      label: Header
+    second:
+      label: Content
+    third:
+      label: Footer
+basestart_card3stack:
+  label: Card three block stacked
+  category: Basestart Cards
+  path: layouts
+  template: card-3stack
+  default_region: second
+  icon_map:
+    - [top]
+    - [middle]
+    - [bottom]
+  regions:
+    first:
+      label: First
+    second:
+      label: Image
+    third:
+      label: Second
+basestart_cardhorizontal:
+  label: Card horizontal
+  category: Basestart Cards
+  path: layouts
+  template: card-horizontal
+  default_region: second
+  icon_map:
+    - [first, second]
+  regions:
+    first:
+      label: Image
+    second:
+      label: Second
+basestart_media:
+  label: Media
+  category: Basestart Media
+  path: layouts
+  template: bootstrap-media
+  default_region: second
+  icon_map:
+    - [first, second]
+  regions:
+    first:
+      label: Image
+    second:
+      label: Content
+basestart_col2-equal:
+  label: 2 Columns Equal
+  category: Basestart Columns
+  path: layouts
+  template: col2-equal
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    bottom:
+      label: Bottom
+basestart_col2-3-9:
+  label: 2 Columns 3 and 9
+  category: Basestart Columns
+  path: layouts
+  template: col2-3-9
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    bottom:
+      label: Bottom
+basestart_col2-9-3:
+  label: 2 Columns 9 and 3
+  category: Basestart Columns
+  path: layouts
+  template: col2-9-3
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    bottom:
+      label: Bottom
+basestart_col3-equal:
+  label: 3 Columns Equal
+  category: Basestart Columns
+  path: layouts
+  template: col3-equal
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second, third]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    bottom:
+      label: Bottom
+basestart_col4-equal:
+  label: 4 Columns Equal
+  category: Basestart Columns
+  path: layouts
+  template: col4-equal
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second, third, fourth]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    fourth:
+      label: Fourth
+    bottom:
+      label: Bottom

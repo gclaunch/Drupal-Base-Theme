@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Include theme for Footer
+ *
+ */
+#}
+
+{% if page.footer %}
+  <footer id="footer" role="contentinfo" class="footer u-background-color--charcoal u-cf">
+    <div class="footer-content l-container--md u-justify--space-between u-position--relative">
+	    {{ page.footer }}
+      <div class="footer__copyright">
+          <p class="u-color--white">© {{ 'now'|date('Y') }} Basestart</p>
+      </div>
+  	</div>
+  </footer>
+{% endif %}

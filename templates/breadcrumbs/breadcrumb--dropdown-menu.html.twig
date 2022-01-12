@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+{% if page.breadcrumb %}
+  <div id="breadcrumb-container-basic">
+    <div id="breadcrumb" class="breadcrumb u-padding--half--top u-padding--half--bottom u-space--bottom l-container--md">
+      {{ page.breadcrumb }}
+    </div>
+  </div>
+{% endif %}

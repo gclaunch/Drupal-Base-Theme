@@ -1,0 +1,47 @@
+<div id="page" role="document">
+
+  {% include directory ~ '/templates/base/header.html.twig' %}
+
+  <main id="main" role="main" class="main">
+
+    {% include directory ~ '/templates/breadcrumbs/breadcrumb--dropdown-menu.html.twig' %}
+
+    {% include directory ~ '/templates/highlighted/highlighted.html.twig' %}
+
+    <section id="hero" class="hero">
+      <div class="l-container--md">
+        {{ page.title }}
+      </div>
+    </section>
+    
+    <section id="content-top" class="l-container--md u-position--relative">
+
+      {% if page.content or page.sidebar_second %}
+        <div class="content-main">
+          {% if page.content %}
+            <div class="content u-padding--double--right u-space--double--bottom">
+              {{ page.content_filters }}
+              {{ page.content }}
+            </div>
+          {% endif %}
+
+          {% if page.sidebar_second %}
+            <aside role="complementary" class="sidebar u-space--triple--bottom">
+              {{ page.sidebar_second }}
+            </aside>
+          {% endif %}
+        </div>
+      {% endif %}
+  
+    </section>
+
+    {% if page.content_bottom %}
+      <section id="content-bottom" class="content-bottom">
+        {{ page.content_bottom }}
+      </section>
+    {% endif %}
+
+  </main>
+
+  {% include directory ~ '/templates/base/footer.html.twig' %}
+</div>

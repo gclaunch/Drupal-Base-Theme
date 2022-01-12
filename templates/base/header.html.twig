@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Include theme for Header
+ *
+ */
+#}
+
+
+{% if page.header or page.utility_menu or page.primary_menu %}
+  <header id="header" class="header">
+    
+    {% if page.header %}
+      <div class="header__top l-container--md">
+        {{ page.header }}
+        <div class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+          <div class="menu-toggle-inner">
+            <span class="screen-reader-text">{{ site_name }}</span>
+            <div class="menu-slice"></div>
+            <div class="menu-slice"></div>
+            <div class="menu-slice"></div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if page.primary_menu or page.utility_menu %}
+      <div class="header__bottom">
+        <div class="header__nav">
+          {{ page.primary_menu }}
+          {{ page.utility_menu }}
+        </div>
+      </div>
+    {% endif %}
+
+  </header>
+{% endif %}
+
+

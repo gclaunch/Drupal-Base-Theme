@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Theme override to display a media item.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set media_content = content.field_media_image[0]|render %}
+{% set media_caption = content.field_media_caption[0]|render %}
+{% set media_link = content.field_url[0]|render %}
+
+{%
+  set classes = [
+  	'media',
+    'image'
+  ]
+%}
+
+<article {{ attributes.addClass(classes) }}>
+  {% if content %}
+  	
+	{{ media_content }}
+    
+    {% if media_caption %}
+      <div class="u-font--caption">
+          {{ media_caption }}
+      </div>
+    {% endif %}
+
+  {% endif %}
+</article>

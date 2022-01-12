@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override to display a media item.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set media_content = content.field_media_file[0]|render %}
+
+{%
+  set classes = [
+  	'media',
+    'file'
+  ]
+%}
+
+
+<article {{ attributes.addClass(classes) }}>
+  {% if content %}
+  	
+	  {{ media_content }}
+
+  {% endif %}
+</article>

@@ -1,0 +1,14 @@
+global-css:
+  version: 1.0
+  css:
+    theme:
+      # 'https://use.typekit.net/gwg8ibd.css': { type: external }
+      # dist/css/main.css: {}
+global-js:
+  version: 1.0
+  js:
+    # dist/js/jsbundlename.js: {}
+    # dist/js/react.bundle.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - core/drupal

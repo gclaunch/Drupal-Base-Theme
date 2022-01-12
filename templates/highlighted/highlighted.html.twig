@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Default theme implementation for highlighted.
+ *
+ * Available variables:
+ * - highlighted: Highlighted status mwessage.
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+{% if page.highlighted %}
+  <div id="highlighted" class="highlighted l-container--md">
+    {{ page.highlighted }}
+  </div>
+{% endif %}
