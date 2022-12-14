@@ -9,24 +9,22 @@
     {% include directory ~ '/templates/highlighted/highlighted.html.twig' %}
 
     <section id="hero" class="hero">
-      <div class="l-container--md">
-        {{ page.title }}
-      </div>
+      {{ page.title }}
     </section>
     
-    <section id="content-top" class="l-container--md u-position--relative">
+    <section id="content-top" class="content-top">
 
       {% if page.content or page.sidebar_second %}
         <div class="content-main">
           {% if page.content %}
-            <div class="content u-padding--double--right u-space--double--bottom">
+            <div class="content">
               {{ page.content_filters }}
               {{ page.content }}
             </div>
           {% endif %}
 
           {% if page.sidebar_second %}
-            <aside role="complementary" class="sidebar u-space--triple--bottom">
+            <aside role="complementary" class="sidebar">
               {{ page.sidebar_second }}
             </aside>
           {% endif %}

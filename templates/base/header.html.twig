@@ -11,9 +11,9 @@
   <header id="header" class="header">
     
     {% if page.header %}
-      <div class="header__top l-container--md">
+      <div class="header__top">
         {{ page.header }}
-        <div class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+        <div class="menu-toggle" aria-label="menu" role="button" aria-controls="primary-menu" aria-expanded="false">
           <div class="menu-toggle-inner">
             <span class="screen-reader-text">{{ site_name }}</span>
             <div class="menu-slice"></div>

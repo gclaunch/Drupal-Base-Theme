@@ -13,6 +13,29 @@ use Drupal\Component\Utility\Xss;
 use Drupal\node\Entity\Node;
 use Drupal\Component\Render\MarkupInterface;
 
+
+function basestart_preprocess(&$variables, $hook) {
+  global $base_url;
+
+  $variables['base_url'] = $base_url;
+  $variables['url_path'] = \Drupal::request()->getRequestUri();
+  $variables['theme_path'] = \Drupal::service('extension.list.theme')->getPath('basestart');
+
+  // Page is front.
+  try {
+    $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+  } catch (Exception $e) {
+    $variables['is_front'] = FALSE;
+  }
+
+  // User has Admin access.
+  try {
+    $variables['is_admin'] = \Drupal::currentUser()->hasPermission('access administration pages');
+  } catch (Exception $e) {
+    $variables['is_admin'] = FALSE;
+  }
+}
+
 /**
  * Implements hook_preprocess_HOOK() for HTML document templates.
  *
