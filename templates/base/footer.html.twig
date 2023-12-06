@@ -6,13 +6,61 @@
  */
 #}
 
-{% if page.footer %}
-  <footer id="footer" role="contentinfo" class="footer">
-    <div class="footer-content">
-	    {{ page.footer }}
-      <div class="footer__copyright">
-          <p class="copyright-text">© {{ 'now'|date('Y') }} Basestart</p>
-      </div>
-  	</div>
+{% set classes = [
+  'site-footer',
+] %}
+
+
+{% block footer %}
+  <footer id="footer" role="contentinfo" {{ attributes.addClass(classes) }}>
+    <div class="container--inner">
+
+      {% block footer_first %}
+        {% if page.footer_first %}
+          <div class="footer-first">
+            {{ page.footer_first }}
+          </div>
+        {% endif %}
+      {% endblock footer_first %}
+
+      {% block footer_second %}
+        {% if page.footer_second %}
+          <div class="footer-second">
+            {{ page.footer_second }}
+          </div>
+        {% endif %}
+      {% endblock footer_second %}
+
+      {% block footer_third %}
+        {% if page.footer_main %}
+          <div class="footer-third">
+            {{ page.footer_main }}
+          </div>
+        {% endif %}
+      {% endblock footer_third %}
+
+      {% block footer_fourth %}
+        {% if page.footer_main %}
+          <div class="footer-fourth">
+            {{ page.footer_main }}
+          </div>
+        {% endif %}
+      {% endblock footer_fourth %}
+
+      {% block footer_bottom %}
+        <div class="footer-bottom">
+          {% if page.footer_bottom %}
+            <div class="bottom-links">
+              {{ page.footer_bottom }}
+            </div>
+          {% endif %}
+
+          <div class="copyright">
+            &copy; {{ 'now'|date('Y') }} Basestart
+          </div>
+        </div>
+      {% endblock footer_bottom %}
+
+    </div>
   </footer>
-{% endif %}
+{% endblock footer %}

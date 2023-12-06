@@ -10,6 +10,13 @@
  */
 #}
 
+{% set published = node.status.value %}
+
+{% if published == '0' %}
+  <div class="is-unpublished">
+    {{ 'Unpublished'|t }}
+  </div>
+{% endif %}
 
 {% if page.highlighted %}
   <div id="highlighted" class="highlighted">

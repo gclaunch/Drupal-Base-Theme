@@ -4,7 +4,7 @@
 * Default theme implementation to display a node.
 *
 * Available variables:
-* - title: the (sanitized) title of the node.
+* - label: the (sanitized) title of the node.
 * - content: An array of node items. Use render(content) to print them all, or
 *   print a subset such as render(content['field_example']). Use
 *   hide(content['field_example']) to temporarily suppress the printing of a
@@ -75,25 +75,29 @@
 */
 #}
 
-{% set published = node.status.value %}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
 
-{% if published == '0' %}
-  <div class="is-unpublished">Unpublished</div>
-{% endif %}
+{% block node %}
+  <article id="node-{{ node.id }}" {{attributes.addClass(classes)}}>
 
-<article id="node-{{ node.id }}" class="{{ attributes.class ~ ' u-cf'}} node__{{ node.bundle }}"{{ attributes }}>
-  {{ title_prefix }}
-  {% if not page %}
-    <h2{{ title_attributes }}><a href="{{ url }}" rel="bookmark">{{ label }}</a></h2>
-  {% endif %}
-  {{ title_suffix }}
+    {% block hero %}
+      <section class="hero">
+        <h1 class="h1">{{ label }}</h1>
+      </section>
+    {% endblock hero %}
 
-  {{ content }}
+    {% block content %}
+      {{ content }}
+    {% endblock content %}
 
-  {% if content.field_tags|length and not is_front %}
-    {{ content.field_tags }}
-  {% endif %}
-
-  {{ content.links }}
-  
-</article>
+  </article>
+{% endblock node %}

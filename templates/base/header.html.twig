@@ -7,33 +7,30 @@
 #}
 
 
-{% if page.header or page.utility_menu or page.primary_menu %}
+{% block header %}
   <header id="header" class="header">
     
     {% if page.header %}
       <div class="header__top">
         {{ page.header }}
-        <div class="menu-toggle" aria-label="menu" role="button" aria-controls="primary-menu" aria-expanded="false">
-          <div class="menu-toggle-inner">
-            <span class="screen-reader-text">{{ site_name }}</span>
-            <div class="menu-slice"></div>
-            <div class="menu-slice"></div>
-            <div class="menu-slice"></div>
-          </div>
-        </div>
+        <button class="menu-toggle" aria-label="menu" role="button" aria-controls="primary-menu" aria-expanded="false">
+          <span class="screen-reader-text">{{ site_name }}</span>
+          <div class="menu-slice"></div>
+          <div class="menu-slice"></div>
+          <div class="menu-slice"></div>
+          <span>{{ 'Menu'|t }}</span>
+        </button>
       </div>
     {% endif %}
 
-    {% if page.primary_menu or page.utility_menu %}
+    {% if page.primary_menu or page.secondary_menu %}
       <div class="header__bottom">
         <div class="header__nav">
           {{ page.primary_menu }}
-          {{ page.utility_menu }}
+          {{ page.secondary_menu }}
         </div>
       </div>
     {% endif %}
 
   </header>
-{% endif %}
-
-
+{% endblock header %}
