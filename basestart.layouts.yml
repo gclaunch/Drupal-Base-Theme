@@ -1,164 +1,95 @@
-basestart_cardbasic:
-  label: Card basic
-  category: Basestart Cards
-  path: layouts
-  template: card-basic
+layout_onecol:
+  label: 'One column'
+  path: templates/layouts
+  template: layout--onecol
+  library: layout_discovery/onecol
+  category: 'Columns: 1'
+  default_region: content
+  icon_map:
+    - [content]
+  regions:
+    content:
+      label: Content
+
+layout_twocol:
+  label: 'Two column'
+  path: templates/layouts
+  template: layout--twocol
+  library: layout_discovery/twocol
+  category: 'Columns: 2'
   default_region: first
   icon_map:
-    - [first]
-  regions:
-    first:
-      label: Content
-basestart_cardtopimage:
-  label: Card top image
-  category: Basestart Cards
-  path: layouts
-  template: card-top-image
-  default_region: second
-  icon_map:
     - [top]
-    - [middle]
-  regions:
-    first:
-      label: Image
-    second:
-      label: Content
-basestart_cardimageoverlay:
-  label: Card image overlay
-  category: Basestart Cards
-  path: layouts
-  template: card-image-overlay
-  default_region: second
-  icon_map:
-    - [top]
-    - [middle]
-  regions:
-    first:
-      label: Image
-    second:
-      label: Content
-basestart_cardheaderfooter:
-  label: Card header footer
-  category: Basestart Cards
-  path: layouts
-  template: card-header-footer
-  default_region: second
-  icon_map:
-    - [top]
-    - [middle]
+    - [first, second]
     - [bottom]
   regions:
+    top:
+      label: Top
     first:
-      label: Header
+      label: First
     second:
-      label: Content
+      label: Second
+    bottom:
+      label: Bottom
+
+layout_twocol_bricks:
+  label: 'Two column bricks'
+  path: templates/layouts
+  template: layout--twocol-bricks
+  library: layout_discovery/twocol_bricks
+  category: 'Columns: 2'
+  default_region: middle
+  icon_map:
+    - [top]
+    - [first_above, second_above]
+    - [middle]
+    - [first_below, second_below]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first_above:
+      label: 'First above'
+    second_above:
+      label: 'Second above'
+    middle:
+      label: Middle
+    first_below:
+      label: 'First below'
+    second_below:
+      label: 'Second below'
+    bottom:
+      label: Bottom
+
+layout_threecol_25_50_25:
+  label: 'Three column 25/50/25'
+  path: templates/layouts
+  template: layout--threecol-25-50-25
+  library: layout_discovery/threecol_25_50_25
+  category: 'Columns: 3'
+  default_region: second
+  icon_map:
+    - [top]
+    - [first, second, second, third]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
     third:
-      label: Footer
-basestart_card3stack:
-  label: Card three block stacked
-  category: Basestart Cards
-  path: layouts
-  template: card-3stack
-  default_region: second
-  icon_map:
-    - [top]
-    - [middle]
-    - [bottom]
-  regions:
-    first:
-      label: First
-    second:
-      label: Image
-    third:
-      label: Second
-basestart_cardhorizontal:
-  label: Card horizontal
-  category: Basestart Cards
-  path: layouts
-  template: card-horizontal
-  default_region: second
-  icon_map:
-    - [first, second]
-  regions:
-    first:
-      label: Image
-    second:
-      label: Second
-basestart_media:
-  label: Media
-  category: Basestart Media
-  path: layouts
-  template: bootstrap-media
-  default_region: second
-  icon_map:
-    - [first, second]
-  regions:
-    first:
-      label: Image
-    second:
-      label: Content
-basestart_col2-equal:
-  label: 2 Columns Equal
-  category: Basestart Columns
-  path: layouts
-  template: col2-equal
-  default_region: first
-  icon_map:
-    - [top]
-    - [first, second]
-    - [bottom]
-  regions:
-    top:
-      label: Top
-    first:
-      label: First
-    second:
-      label: Second
+      label: Third
     bottom:
       label: Bottom
-basestart_col2-3-9:
-  label: 2 Columns 3 and 9
-  category: Basestart Columns
-  path: layouts
-  template: col2-3-9
-  default_region: first
-  icon_map:
-    - [top]
-    - [first, second]
-    - [bottom]
-  regions:
-    top:
-      label: Top
-    first:
-      label: First
-    second:
-      label: Second
-    bottom:
-      label: Bottom
-basestart_col2-9-3:
-  label: 2 Columns 9 and 3
-  category: Basestart Columns
-  path: layouts
-  template: col2-9-3
-  default_region: first
-  icon_map:
-    - [top]
-    - [first, second]
-    - [bottom]
-  regions:
-    top:
-      label: Top
-    first:
-      label: First
-    second:
-      label: Second
-    bottom:
-      label: Bottom
-basestart_col3-equal:
-  label: 3 Columns Equal
-  category: Basestart Columns
-  path: layouts
-  template: col3-equal
+
+layout_threecol_33_34_33:
+  label: 'Three column 33/34/33'
+  path: templates/layouts
+  template: layout--threecol-33-34-33
+  library: layout_discovery/threecol_33_34_33
+  category: 'Columns: 3'
   default_region: first
   icon_map:
     - [top]
@@ -173,28 +104,5 @@ basestart_col3-equal:
       label: Second
     third:
       label: Third
-    bottom:
-      label: Bottom
-basestart_col4-equal:
-  label: 4 Columns Equal
-  category: Basestart Columns
-  path: layouts
-  template: col4-equal
-  default_region: first
-  icon_map:
-    - [top]
-    - [first, second, third, fourth]
-    - [bottom]
-  regions:
-    top:
-      label: Top
-    first:
-      label: First
-    second:
-      label: Second
-    third:
-      label: Third
-    fourth:
-      label: Fourth
     bottom:
       label: Bottom

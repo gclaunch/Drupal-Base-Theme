@@ -1,45 +1,65 @@
-<div id="page" role="document">
+{#
+/**
+* @file
+* Default theme implementation to display a page.
+*
+* @see template_preprocess()
+* @see template_preprocess_page()
+* @see template_process()
+*/
+#}
 
-  {% include directory ~ '/templates/base/header.html.twig' %}
+{% block page %}
+  <div id="page" role="document">
+    {% block header %}
+      {% include directory ~ '/templates/base/header.html.twig' %}
+    {% endblock header %}
 
-  <main id="main" role="main" class="main">
+    {% block breadcrumbs %}
+      {{ drupal_breadcrumb() }}
+    {% endblock breadcrumbs %}
 
-    {% include directory ~ '/templates/breadcrumbs/breadcrumb--dropdown-menu.html.twig' %}
+    {% block content %}
+      <main id="main" role="main" class="main">
 
-    {% include directory ~ '/templates/highlighted/highlighted.html.twig' %}
+        {% block highlight %}
+          {% include directory ~ '/templates/highlighted/highlighted.html.twig' %}
+        {% endblock highlight %}
 
-    <section id="hero" class="hero">
-      {{ page.title }}
-    </section>
-    
-    <section id="content-top" class="content-top">
+        {# Skip to main content #}
+        <a name="main-content" id="main-content" tabindex="-1"
+        
+        {% block content_main %}
+          <section id="content-top" class="content-top">
 
-      {% if page.content or page.sidebar_second %}
-        <div class="content-main">
-          {% if page.content %}
-            <div class="content">
-              {{ page.content_filters }}
-              {{ page.content }}
-            </div>
+            {% if page.content %}
+              <div class="content">
+                {{ page.content }}
+              </div>
+            {% endif %}
+
+            {% if page.sidebar %}
+              <aside role="complementary" class="sidebar">
+                {{ page.sidebar }}
+              </aside>
+            {% endif %}
+        
+          </section>
+        {% endblock content_main %}
+
+        {% block content_bottom %}
+          {% if page.content_bottom %}
+            <section id="content-bottom" class="content-bottom">
+              {{ page.content_bottom }}
+            </section>
           {% endif %}
+        {% endblock content_bottom %}
 
-          {% if page.sidebar_second %}
-            <aside role="complementary" class="sidebar">
-              {{ page.sidebar_second }}
-            </aside>
-          {% endif %}
-        </div>
-      {% endif %}
-  
-    </section>
+      </main>
+    {% endblock content %}
 
-    {% if page.content_bottom %}
-      <section id="content-bottom" class="content-bottom">
-        {{ page.content_bottom }}
-      </section>
-    {% endif %}
-
-  </main>
-
-  {% include directory ~ '/templates/base/footer.html.twig' %}
-</div>
+    {% block footer %}
+      {% include directory ~ '/templates/base/footer.html.twig' %}
+    {% endblock footer %}
+  </div>
+{% endblock page %}

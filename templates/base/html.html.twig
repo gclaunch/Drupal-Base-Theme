@@ -67,6 +67,12 @@
     {{ page_bottom }}
   {% endif %}
 
+  {% if page.admin and logged_in %}
+    <div class="admin-bar">
+      {{ admin }}
+    </div>
+  {% endif %}
+
   <js-bottom-placeholder token="{{ placeholder_token }}">
   
 </body>

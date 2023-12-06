@@ -46,24 +46,13 @@ function basestart_preprocess_html(&$variables) {
     $variables['attributes']['class'] = [];
   }
 
-  // Add information about the number of sidebars.
-  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
-    $variables['attributes']['class'][] = 'layout-two-sidebars';
-  }
-  elseif (!empty($variables['page']['sidebar_first'])) {
+  // Add information about sidebar.
+  if (!empty($variables['page']['sidebar'])) {
     $variables['attributes']['class'][] = 'layout-one-sidebar';
-    $variables['attributes']['class'][] = 'layout-sidebar-first';
-  }
-  elseif (!empty($variables['page']['sidebar_second'])) {
-    $variables['attributes']['class'][] = 'layout-one-sidebar';
-    $variables['attributes']['class'][] = 'layout-sidebar-second';
+    $variables['attributes']['class'][] = 'layout-sidebar';
   }
   else {
     $variables['attributes']['class'][] = 'layout-no-sidebars';
-  }
-
-  if (!empty($variables['page']['featured_top'])) {
-    $variables['attributes']['class'][] = 'has-featured-top';
   }
 
   // Scroll Spy info added to body.
@@ -195,8 +184,7 @@ function basestart_preprocess_page(&$variables) {
   }
 
   $content_width = 'col';
-  $sidebar_first_width = 'col-md-' . theme_get_setting('basestart_sidebar_first_width');
-  $sidebar_second_width = 'col-md-' . theme_get_setting('basestart_sidebar_second_width');
+  $sidebar_width = 'col-md-' . theme_get_setting('basestart_sidebar_width');
 
   // Define default classes for containers.
   $variables['navbar_top_attributes'] = [
@@ -212,13 +200,9 @@ function basestart_preprocess_page(&$variables) {
     'id' => ['content'],
     'role' => ['main'],
   ];
-  $variables['sidebar_first_attributes'] = [
-    'class' => ['sidebar_first', 'sidebar', $sidebar_first_width],
-    'id' => ['sidebar_first'],
-  ];
-  $variables['sidebar_second_attributes'] = [
-    'class' => ['sidebar_second', 'sidebar', $sidebar_second_width],
-    'id' => ['sidebar_second'],
+  $variables['sidebar_attributes'] = [
+    'class' => ['sidebar', 'sidebar', $sidebar_width],
+    'id' => ['sidebar'],
   ];
   
   // Get custom Navbar classes from config and add them to Navbars.
@@ -244,9 +228,8 @@ function basestart_preprocess_page(&$variables) {
   // Affix.
   $affix_navbar_top = theme_get_setting('basestart_navbar_top_affix');
   $affix_navbar = theme_get_setting('basestart_navbar_affix');
-  $affix_sidebar_first = theme_get_setting('basestart_sidebar_first_affix');
-  $affix_sidebar_second = theme_get_setting('basestart_sidebar_second_affix');
-  if ($affix_navbar_top || $affix_navbar || $affix_sidebar_first || $affix_sidebar_second) {
+  $affix_sidebar = theme_get_setting('basestart_sidebar_affix');
+  if ($affix_navbar_top || $affix_navbar || $affix_sidebar) {
     $variables['#attached']['library'][] = 'basestart/affix';
     if ($affix_navbar_top) {
       $variables['navbar_top_attributes']['data-toggle'] = 'affix';
@@ -254,11 +237,8 @@ function basestart_preprocess_page(&$variables) {
     if ($affix_navbar) {
       $variables['navbar_attributes']['data-toggle'] = 'affix';
     }
-    if ($affix_sidebar_first) {
-      $variables['sidebar_first_attributes']['data-toggle'] = 'affix';
-    }
-    if ($affix_sidebar_second) {
-      $variables['sidebar_second_attributes']['data-toggle'] = 'affix';
+    if ($affix_sidebar) {
+      $variables['sidebar_attributes']['data-toggle'] = 'affix';
     }
   }
 
@@ -266,28 +246,15 @@ function basestart_preprocess_page(&$variables) {
   if (theme_get_setting('basestart_content_offset')) {
     $variables['content_attributes']['class'][] = 'offset-md-' . theme_get_setting('basestart_content_offset');
   }
-  if (theme_get_setting('basestart_sidebar_first_offset')) {
-    $variables['sidebar_first_attributes']['class'][] = 'offset-md-' . theme_get_setting('basestart_sidebar_first_offset');
-  }
-  if (theme_get_setting('basestart_sidebar_second_offset')) {
-    $variables['sidebar_second_attributes']['class'][] = 'offset-md-' . theme_get_setting('basestart_sidebar_second_offset');
+  if (theme_get_setting('basestart_sidebar_offset')) {
+    $variables['sidebar_attributes']['class'][] = 'offset-md-' . theme_get_setting('basestart_sidebar_offset');
   }
 
   // Define column layout classes.
   switch (theme_get_setting('basestart_sidebar_position')) {
-    case 'left':
-      $variables['sidebar_first_attributes']['class'][] = 'order-first';
-      $variables['content_attributes']['class'][] = 'order-last';
-      break;
-
-    case 'both':
-      $variables['sidebar_first_attributes']['class'][] = 'order-first';
-      $variables['sidebar_second_attributes']['class'][] = 'order-last';
-      break;
-
     case 'right':
       $variables['content_attributes']['class'][] = 'order-first';
-      $variables['sidebar_second_attributes']['class'][] = 'order-last';
+      $variables['sidebar_attributes']['class'][] = 'order-last';
       break;
   }
 
@@ -344,8 +311,7 @@ function basestart_preprocess_page(&$variables) {
   $variables['navbar_top_attributes'] = new Attribute($variables['navbar_top_attributes']);
   $variables['navbar_attributes'] = new Attribute($variables['navbar_attributes']);
   $variables['content_attributes'] = new Attribute($variables['content_attributes']);
-  $variables['sidebar_first_attributes'] = new Attribute($variables['sidebar_first_attributes']);
-  $variables['sidebar_second_attributes'] = new Attribute($variables['sidebar_second_attributes']);
+  $variables['sidebar_attributes'] = new Attribute($variables['sidebar_attributes']);
 
   // Declare container layout.
   $variables['container_navbar'] = theme_get_setting('basestart_navbar_container');
@@ -415,8 +381,7 @@ function basestart_preprocess_region(&$variables) {
     'content',
     'primary_menu',
     'header',
-    'sidebar_first',
-    'sidebar_second',
+    'sidebar',
   ];
   if (theme_get_setting('basestart_region_class_' . $variables['elements']['#region']) !== NULL) {
     $variables['attributes']['class'][] = theme_get_setting('basestart_region_class_' . $variables['elements']['#region']);
@@ -558,8 +523,7 @@ function basestart_theme_suggestions_region_alter(array &$suggestions, array $va
     'content',
     'primary_menu',
     'header',
-    'sidebar_first',
-    'sidebar_second',
+    'sidebar',
   ];
   if (theme_get_setting('basestart_region_clean_' . $variables['elements']['#region']) !== NULL) {
     $region_clean = theme_get_setting('basestart_region_clean_' . $variables['elements']['#region']);
@@ -669,26 +633,6 @@ function basestart_theme_suggestions_input_alter(array &$suggestions, array $var
 }
 
 /**
- * Implements hook_form_alter() to add classes to the search form.
- */
-/*
- * function basestart_form_alter(
- * &$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
- *  if (in_array($form_id, ['search_block_form', 'search_form'])) {
- *    $key = ($form_id == 'search_block_form') ? 'actions' : 'basic';
- *    if (!isset($form[$key]['submit']['#attributes'])) {
- *      $form[$key]['submit']['#attributes'] = new Attribute();
- *    }
- *    $outline = theme_get_setting('basestart_button_outline') ?
- *    'btn-outline-primary' : 'btn-primary';
- * If use the $outline variable, HTML crashes. Even if use the value directly
- *    $form[$key]['submit']['#attributes']->addClass(
- *    ['btn', 'btn-primary', 'btn-sm']);
- *  }
- * }
- */
-
-/**
  * Implements hook_preprocess_input() for adding classes to inputs.
  */
 function basestart_preprocess_input(&$variables) {
@@ -751,5 +695,24 @@ function basestart_preprocess_input(&$variables) {
       $variables['attributes'] = new Attribute($variables['attributes']);
     }
     $variables['safe_value_label'] = Xss::filter($variables['attributes']['value']);
+  }
+}
+
+/**
+ * Implements HOOK_preprocess_breadcrumb for breadcrumbs.
+ */
+function basestart_preprocess_breadcrumb(array &$variables) {
+  if ($variables['breadcrumb']) {
+    $request = \Drupal::request();
+    $route_match = \Drupal::routeMatch();
+    $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+
+    if (!empty($page_title)) {
+      $variables['breadcrumb'][] = [
+        'text' => $page_title,
+        'attributes' => new Attribute(['class' => ['active']]),
+      ];
+    }
+    $variables['#cache']['contexts'][] = 'url';
   }
 }
